@@ -5,67 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="lab14.css">
     <title>Document</title>
 </head>
 
 <body>
     <h1>My Kiana's Phone book</h1>
-        <div class="image">
-            <div class="profile" id="profile" width="30%">
-                <div id="notify">1
+    <div class="image">
+        <div class="profile" id="profile" width="30%">
+            <div id="notify">1
+            </div>
+        </div>
+    </div>
+    <h2 id="Username"></h2>
+    <form>
+        <div class="input-contianer">
+            <div class="input">
+                <label>Set the Username</label>
+                <div>
+                    <input type="text" id="uname-input" placeholder="Enter Username">
+                    <button type="button" onclick="setUsername()">SET</button>
+                </div>
+            </div>
+            <div class="input">
+                <label>Set the profile image URL</label>
+                <div>
+                    <input type="text" id="URL-input" placeholder="Enter Image URL">
+                    <button type="button" value="SET" Onclick=setImg()>SET</button>
                 </div>
             </div>
         </div>
-        <h3 id="Username"></h3>
-    <form>
-        <div class="input-contianer">
-            <label>Set the Username</label>
-            <div>
-                <input type="text" id="uname-input" placeholder="Enter Username">
-                <button type="button" onclick="setUsername()">SET</button>   
-            </div>
-            <label>Set the profile image URL</label>
-            <div>
-                <input type="text" id="URL-input" placeholder="Enter Image URL">
-                <button type="button" value="SET" Onclick = setImg()>SET</button>
-            </div>
-        </div>
     </form>
-    <h3>Phone Number List</h3>
+    <h2>Phone Number List</h2>
     <div class="tel-contianer">
         <div class="tel">
+
             <input type="text" id="nameTel-input" placeholder="Name">
             <input type="text" id="tel-input" placeholder="Tel">
-            <button type="button">ADD</button>
-            <button type="button">EXPORT</button>
+
+            <button type="button" onclick="add()">ADD</button>
+            <button type="button" onclick="saveCSV()">EXPORT</button>
+
         </div>
+        <table>
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+            </tr>
+        </table>
     </div>
-    <table>
-        <tr>
-            <th>No.</th>
-            <th>Name</th>
-            <th>Phone Number</th>
-        </tr>
-    </table>
 </body>
 <script>
     const name = document.getElementById("Username");
     const inputName = document.getElementById("uname-input");
     const profile = document.getElementById("profile");
     const inputURL = document.getElementById("URL-input");
-    
-
-    function setUsername(){
+    const nameTelInput = document.getElementById("nameTel-input");
+    const telInput = document.getElementById("tel-input");
+    var tbdy = document.getElementsByTagName('tbody')[0];
+    var num = 1;
+    var phonenumber = [];
+    function setUsername() {
         document.getElementById("Username").innerHTML = inputName.value;
     }
-    function setImg(){
+    function setImg() {
         profile.style.backgroundImage = "url(" + inputURL.value + ")";
     }
 
+    function add() {
+        for (var i = 0; i <= 3; i++) {
+            var tr = document.createElement('tr');
+            for (var j = 0; j < 2; j++) {
+                if (i == 3 && j == 1) {
+                    break
+                } else {
+                    if (i=1){
+                        var td = document.createElement('td');
+                        td.innerText = num;
+                        num += 1;
+                        tr.appendChild(td)
+                    }
+                    if (i=2){
+                        var td = document.createElement('td');
+                        td.innerText = nameTelInput.value;
+                        tr.appendChild(td)
+                    }
+                    if (i=3){
+                        var td = document.createElement('td');
+                        td.innerText = telInput.value;
+                        tr.appendChild(td)
+                    }
+                    
+                }
+                
+            }
+            let nameTel = nameTelInput.value;
+            let tel = telInput.value
+            phonenumber.push([nameTel, tel]);
+            tbdy.appendChild(tr)
+        }
+    }
+
     function saveCSV() {
-    const csvContent = phonenumber.map(row => row.join(",")).join("\n"); // Convert array to CSV string
+        const csvContent = phonenumber.map(row => row.join(",")).join("\n"); // Convert array to CSV string
         const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
         const link = document.createElement("a");
         const url = URL.createObjectURL(blob);
@@ -75,6 +119,7 @@
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        };
+    };
 </script>
+
 </html>

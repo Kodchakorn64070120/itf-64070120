@@ -1,12 +1,15 @@
 body{
-    font-family: "Open Sans", sans-serif;
+    font-family: "Afacad Flux", sans-serif;
     margin: 0;
     display: flex;
     flex-direction: column;
+    background-color: rgb(17, 17, 17);
+    color: aliceblue;
 }
 
-h1, h3{
+h1, h2{
     text-align: center;
+    letter-spacing: 5px;
 }
 
 .image{
@@ -22,48 +25,96 @@ h1, h3{
     background-size: cover;
     position: relative;
     background-position: 50%;
+    box-shadow: 2px 2px 30px 0px rgb(149, 83, 255);
 }
 #notify{
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: rgb(222, 194, 245);
+    background-color: rgb(195, 134, 253);
     position: absolute;
     bottom: 20px;
     right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: rgb(243, 228, 255);
+    -webkit-text-stroke-width: 1px;
+    box-shadow: 2px 2px 30px 0px rgb(149, 83, 255);
 }
 
 form{
     display: grid;
     grid-template-columns: auto;
     justify-content: center;
+    font-size: 18px;
 }
 
 .tel{
-    justify-content: space-around;
+    display: flex;
+    justify-content: center;
+}
+
+.tel input, .tel button{
+    margin: 5px;
 }
 
 .tel-contianer{
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
+
 table{
-    margin-top: 50px;
-    max-width: 50%;
+    margin: 20px;
 }
+
 tr{
     display: grid;
     grid-template-columns: auto auto auto;
+    border-bottom: 2px solid rgb(227, 186, 255);
+    padding: 10px;
+    text-align: center;
 }
 
 .input-contianer{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
 }
 
-.input-contianer input{
+button{
+    margin-left: 10px;
+}
+input[type=text] {
+    width: 300px;
+    box-sizing: border-box;
+    border: 2px solid rgb(227, 186, 255);
+    border-radius: 5px;
+    background: none;
+    font-size: 14px;
+    padding: 5px 10px 5px 10px;
     margin-left: 20px;
+    color: aliceblue;
+  }
+
+  input[type=text]:focus {
+    box-shadow: 0px 0px 10px 0px rgb(149, 83, 255);
+  }
+
+.input{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+button{
+    background: none;
+    border: solid 2px;
+    padding: 10px 30px;
+    color: rgb(227, 186, 255);
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgb(149, 83, 255);
+    cursor: pointer;
+
 }
